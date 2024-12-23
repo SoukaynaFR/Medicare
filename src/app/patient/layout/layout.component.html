@@ -1,0 +1,51 @@
+<div class="layout">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="logo.png" alt="Medicare Logo" class="logo" />
+      <span class="brand-name">Medicare</span>
+    </div>
+    <div class="nav-icons">
+      <!-- Notification Bell -->
+      <span class="notification-bell" (click)="toggleNotifications()">
+        <img src="bell-icon.png" alt="bell icon">
+        <span class="notification-badge" *ngIf="notifications.length > 0">{{ notifications.length }}</span>
+      </span>
+    
+      <!-- Notifications Dropdown -->
+      <div *ngIf="showNotifications" class="notifications-dropdown">
+        <p *ngFor="let notification of notifications">{{ notification }}</p>
+        <p *ngIf="notifications.length === 0">No notifications</p>
+      </div>
+    
+      <!-- Profile Icon -->
+      <!-- Profile Button -->
+  <button class="profile-button" (click)="toggleProfile()">
+    <img src="profile-icon.png" alt="Profile icon" />
+     <span class="profile-name">Ravad Nadam</span>
+  </button>
+
+  <!-- Profile Dropdown -->
+  <div *ngIf="showProfile" class="profile-dropdown">
+    <ul>
+      <li (click)="navigateToProfile()">Profil</li>
+      <li (click)="logout()">Déconnexion</li>
+    </ul>
+  </div>
+    </div>
+    
+  </nav>
+  <!-- Sidebar and Main Content -->
+  <div class="body">
+    <aside class="sidebar">
+      <ul>
+        <li routerLink="/patient/dashboard" routerLinkActive="active">Prendre un rendz-vous</li>
+        <li routerLink="/patient/appointments" routerLinkActive="active">Mes rendz-vous</li>
+      </ul>
+    </aside>
+
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

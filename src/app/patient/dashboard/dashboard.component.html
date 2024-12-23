@@ -1,0 +1,37 @@
+<div class="dashboard">
+    <h2>Prendre un rendez-vous</h2>
+  
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+      <!-- Step 1: Specialization -->
+      <div *ngIf="currentStep === 1">
+        <label for="specialization">Specialization</label>
+        <select id="specialization" formControlName="specialization">
+          <option value="dermatologist">Dermatologist</option>
+          <option value="cardiologist">Cardiologist</option>
+          <option value="neurologist">Neurologist</option>
+          <!-- Add more specialties as required -->
+        </select>
+        <button type="button" (click)="nextStep()">Next</button>
+      </div>
+  
+      <!-- Step 2: Available Time Slots -->
+      <div *ngIf="currentStep === 2">
+        <label for="time">Select Time</label>
+        <select id="time" formControlName="time">
+          <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option>
+        </select>
+        <button type="button" (click)="previousStep()">Back</button>
+        <button type="button" (click)="nextStep()">Next</button>
+      </div>
+  
+      <!-- Step 3: Confirm Appointment -->
+      <div *ngIf="currentStep === 3">
+        <h3>Confirm Appointment</h3>
+        <p><b>Specialization:</b> {{ appointmentForm.value.specialization }}</p>
+        <p><b>Time Slot:</b> {{ appointmentForm.value.time }}</p>
+        <button type="button" (click)="previousStep()">Back</button>
+        <button type="submit">Confirm</button>
+      </div>
+    </form>
+  </div>
+  
