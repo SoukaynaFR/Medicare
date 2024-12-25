@@ -1,37 +1,51 @@
-<div class="dashboard">
-    <h2>Prendre un rendez-vous</h2>
-  
-    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
-      <!-- Step 1: Specialization -->
-      <div *ngIf="currentStep === 1">
-        <label for="specialization">Specialization</label>
-        <select id="specialization" formControlName="specialization">
-          <option value="dermatologist">Dermatologist</option>
-          <option value="cardiologist">Cardiologist</option>
-          <option value="neurologist">Neurologist</option>
-          <!-- Add more specialties as required -->
-        </select>
-        <button type="button" (click)="nextStep()">Next</button>
-      </div>
-  
-      <!-- Step 2: Available Time Slots -->
-      <div *ngIf="currentStep === 2">
-        <label for="time">Select Time</label>
-        <select id="time" formControlName="time">
-          <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option>
-        </select>
-        <button type="button" (click)="previousStep()">Back</button>
-        <button type="button" (click)="nextStep()">Next</button>
-      </div>
-  
-      <!-- Step 3: Confirm Appointment -->
-      <div *ngIf="currentStep === 3">
-        <h3>Confirm Appointment</h3>
-        <p><b>Specialization:</b> {{ appointmentForm.value.specialization }}</p>
-        <p><b>Time Slot:</b> {{ appointmentForm.value.time }}</p>
-        <button type="button" (click)="previousStep()">Back</button>
-        <button type="submit">Confirm</button>
-      </div>
-    </form>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Bienvenue sur votre tableau de bord</h1>
+    <p>Gérez vos rendez-vous et suivez votre santé facilement</p>
   </div>
-  
+
+
+  <button (click)="navigateToAppointments()">Go to My Appointments</button>
+
+  <div class="dashboard-card">
+    <h3>Demander un nouveau rendez-vous</h3>
+    <div class="step-container">
+      <!-- Étape 1 : Choix de la spécialité -->
+      <div *ngIf="!appointmentForm.value.specialization">
+        <h2>Choisissez une spécialité :</h2>
+        <div class="specializations">
+          <button *ngFor="let spec of specializations" (click)="selectSpecialization(spec.value)">
+            {{ spec.label }}
+          </button>
+        </div>
+      </div>
+    
+      <!-- Étape 2 : Choix du médecin -->
+      <div *ngIf="appointmentForm.value.specialization && !appointmentForm.value.doctor">
+        <h2>Médecins disponibles pour {{ selectedSpecializationLabel }}</h2>
+        <div class="doctors">
+          <div *ngFor="let doctor of doctors" class="doctor-card" (click)="selectDoctor(doctor)">
+            <img [src]="doctor.image" alt="{{ doctor.name }}" />
+            <p>{{ doctor.name }}</p>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Étape 3 : Choix de la date et de l'heure -->
+      <div *ngIf="appointmentForm.value.specialization && appointmentForm.value.doctor">
+        <h2>Choisissez la date et l'heure :</h2>
+        <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+          <label for="date">Date :</label>
+          <input id="date" type="date" formControlName="date" />
+          
+          <label for="time">Heure :</label>
+          <input id="time" type="time" formControlName="time" />
+          
+          <button type="submit" [disabled]="!appointmentForm.valid">Confirmer le rendez-vous</button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

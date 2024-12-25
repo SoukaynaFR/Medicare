@@ -1,47 +1,100 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AppointmentsService } from '../appointments.service';
+import { Router } from '@angular/router';  
+
+
+interface Doctor {
+  id: number;
+  name: string;
+  image: string;
+}
+
+interface Appointment {
+  specialization: string;
+  doctor: string;
+  date: string;
+  time: string;
+}
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+  styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [ReactiveFormsModule, CommonModule],
 })
-export class DashboardComponent implements OnInit {
-  appointmentForm!: FormGroup;
-  currentStep = 1;
-  availableSlots = ['10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM'];
+export class DashboardComponent {
+  appointmentForm: FormGroup;
+  specializations = [
+    { value: 'general', label: 'Médecin généraliste' },
+    { value: 'dentist', label: 'Dentiste' },
+    { value: 'dermatologist', label: 'Dermatologue' },
+  ];
+  doctors: Doctor[] = [];
+  selectedSpecializationLabel = '';
+  appointments: Appointment[] = []; // Store booked appointments
+  showAppointments = false; // Toggle between booking form and appointments list
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    // Initialize appointmentForm inside ngOnInit to make sure 'fb' is ready
+  constructor(private fb: FormBuilder, private appointmentsService: AppointmentsService,private router: Router) {
     this.appointmentForm = this.fb.group({
       specialization: ['', Validators.required],
-      time: ['', Validators.required]
+      doctor: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
     });
   }
 
-  // Move to the next step
-  nextStep(): void {
-    if (this.appointmentForm.valid) {
-      this.currentStep++;
+  selectSpecialization(specialization: string) {
+    this.appointmentForm.patchValue({ specialization });
+    this.selectedSpecializationLabel = this.specializations.find(
+      (spec) => spec.value === specialization
+    )?.label || '';
+    this.loadDoctorsBySpecialization(specialization);
+  }
+
+  loadDoctorsBySpecialization(specialization: string) {
+    if (specialization === 'general') {
+      this.doctors = [
+        { id: 1, name: 'Dr. John Doe', image: 'doc1.png' },
+        { id: 2, name: 'Dr. Jane Smith', image: 'doc2.png' },
+      ];
+    } else if (specialization === 'dentist') {
+      this.doctors = [
+        { id: 3, name: 'Dr. Alex Williams', image: 'doc3.png' },
+        { id: 4, name: 'Dr. Emily Johnson', image: 'doc1.png' },
+      ];
+    } else if (specialization === 'dermatologist') {
+      this.doctors = [
+        { id: 5, name: 'Dr. Sarah Lee', image: 'doc4.png' },
+        { id: 6, name: 'Dr. Michael Brown', image: 'doc2.png' },
+      ];
+    } else {
+      this.doctors = [];
     }
   }
 
-  // Move to the previous step
-  previousStep(): void {
-    this.currentStep--;
+  selectDoctor(doctor: Doctor) {
+    this.appointmentForm.patchValue({ doctor: doctor.id });
   }
 
-  // Handle form submission
-  onSubmit(): void {
+  onSubmit() {
     if (this.appointmentForm.valid) {
-      const appointmentData = this.appointmentForm.value;
-      console.log('Appointment booked with data:', appointmentData);
+      const newAppointment = this.appointmentForm.value;
+      this.appointmentsService.addAppointment(newAppointment);
+      console.log('Appointment booked successfully:', newAppointment);
+      this.appointmentForm.reset();
     }
+  }
+
+  toggleAppointments() {
+    this.showAppointments = !this.showAppointments;
+  }
+
+
+  navigateToAppointments() {
+    this.router.navigate(['patient/appointments']);
   }
 }

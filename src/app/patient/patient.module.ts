@@ -1,23 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-import { LayoutComponent } from './layout/layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PatientRoutingModule } from './patient-routing.module';
 
 @NgModule({
-  declarations: [],
-
   imports: [
     CommonModule,
-    RouterModule, // Required for router-outlet
-    RouterModule.forChild([]), // In case child routing is used
-    LayoutComponent,
-    DashboardComponent,
-    AppointmentsComponent,
+    PatientRoutingModule,
+    ReactiveFormsModule,
+    RouterModule,
   ],
 })
 export class PatientModule {}
-
 

@@ -188,33 +188,6 @@
   flex: 1; /* Fill the remaining height */
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px; /* Fixed width */
-  background-color: #68A79A; /* Example background */
-  padding: 20px; /* Add some padding */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li {
-  margin-bottom: 15px; /* Spacing between items */
-  font-size: 16px;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #333;
-}
-
-.sidebar ul li a.active {
-  font-weight: bold;
-  color: #007bff;
-}
 
 /* Main Content */
 .main-content {
@@ -223,3 +196,70 @@
   background-color: #FFFFFF; /* Example background */
   overflow-y: auto; /* Allow scrolling if content overflows */
 }
+
+
+
+
+// sidebar
+
+
+
+.sidebar {
+ 
+  width: 250px;
+  background-color: #68A79A; 
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  
+
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px; 
+    font-size: 16px;
+    padding: 10px 15px; 
+    border-radius: 10px;
+    font-weight: 500;
+    border: 2px solid #f5f5f5;
+
+    
+    &:hover {
+      background-color: #0F4C5C;
+      border-radius: 10px;
+      border: 2px solid #0F4C5C;
+
+    }
+
+    &.active {
+      background-color: #007bff; 
+      color: white;
+    }
+    
+  
+  }
+  
+  /* Optional: For smaller screens, we can make the sidebar collapse */
+  @media (max-width: 768px) {
+    width: 200px;
+    padding: 15px;
+    
+    li {
+      font-size: 1rem;
+    }
+  }
+}
+.sidebar li i {
+  margin-right: 10px; 
+}
+

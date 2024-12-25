@@ -15,7 +15,7 @@ export class LayoutComponent {
   notifications: string[] = ['Appointment confirmed', 'Reminder: Check-in tomorrow'];
   showNotifications = false;
   showProfile = false;
-patientName: any;
+  patientName: any;
   router: any;
 
   toggleNotifications() {

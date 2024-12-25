@@ -1,41 +1,162 @@
-.dashboard {
-    margin: 0 auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
+.dashboard-container {
+  padding: 20px;
+  background-color: #f4f7fb;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: #666;
+  }
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    font-size: 1.4rem;
+    color: #0F4C5C;
+    margin-bottom: 5px;
+    font-weight: 500;
   }
   
+}
+
+.dashboard-card ul {
+  list-style-type: none;
+  padding: 0;
+  
+  .appointment-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+    p {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+    }
+  }
+}
+
+.no-appointments {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.step-container {
+  padding: 10px;
   h2 {
-    text-align: start;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.2rem;
   }
-  
+
+  .specializations {
+    display: flex;
+    gap: 15px;
+
+    button {
+      padding: 18px 30px;
+      border: none;
+      background-color: #417481;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, color 1.3s ease, box-shadow 0.3s ease;
+    
+      &:hover {
+        background: linear-gradient(90deg, #417481 50%, white 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
+        color: #417481;
+        outline: 2px solid #417481;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        transition: background-position 0.3s ease, color 0.3s ease;
+      }
+    }
+    
+  }
+
+  .doctors {
+    display: flex;
+    gap: 20px;
+
+    .doctor-card {
+      cursor: pointer;
+      text-align: center;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 2px solid #417481 ;
+      }
+
+      p {
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: #218838;
+      }
+    }
   }
-  
-  label {
-    margin-bottom: 5px;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  select {
-    margin-bottom: 15px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
+}

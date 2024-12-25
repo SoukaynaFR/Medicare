@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './patient/layout/layout.component';
-import { ProfileComponent } from './patient/profile/profile.component'; // Import ProfileComponent
-import { DashboardComponent } from './patient/dashboard/dashboard.component';
-
+import { ProfileComponent } from './patient/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -20,9 +18,12 @@ export const routes: Routes = [
     ],
   },
   { path: 'profile', component: ProfileComponent },
-
-  { path: 'patient/dashboard', component: DashboardComponent },
-
-
   { path: '', redirectTo: '/patient/dashboard', pathMatch: 'full' },
 ];
+
+
+// export const routes: Routes = [
+//   { path: 'patient/dashboard', component: DashboardComponent },
+//   { path: 'patient/appointments', component: AppointmentsComponent },
+//   { path: '', redirectTo: '/patient/dashboard', pathMatch: 'full' },  // Default route
+// ];

@@ -10,11 +10,11 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'appointments', component: AppointmentsComponent },
-        { path: 'profile', component: ProfileComponent }, // Define the route for the profile
-
+      { path: 'patient/dashboard', component: DashboardComponent },
+      { path: 'patient/appointments', component: AppointmentsComponent },
+      { path: 'profile', component: ProfileComponent },
     ],
+    
   },
 ];
 

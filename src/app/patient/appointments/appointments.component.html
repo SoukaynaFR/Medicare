@@ -1,1 +1,17 @@
-<p>appointments works!</p>
+<div class="appointments-container">
+    <h2>Mes rendez-vous</h2>
+    <div *ngIf="appointments.length > 0; else noAppointments">
+      <ul>
+        <li *ngFor="let appointment of appointments">
+          <strong>Spécialité :</strong> {{ appointment.specialization }}<br />
+          <strong>Médecin :</strong> {{ appointment.doctor }}<br />
+          <strong>Date :</strong> {{ appointment.date }}<br />
+          <strong>Heure :</strong> {{ appointment.time }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noAppointments>
+      <p>Aucun rendez-vous réservé pour le moment.</p>
+    </ng-template>
+  </div>
+  
