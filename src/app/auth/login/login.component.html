@@ -19,10 +19,10 @@
       
 
       <div class="bg-teal-700/90 text-white p-6 rounded-lg max-w-md">
-        <h1 class="text-2xl md:text-3xl font-bold mb-4">Building the Future...</h1>
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">Votre bien-être, notre priorité</h1>
         <p class="text-teal-50">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.
+          L'hôpital offre des soins de qualité, 
+          alliant expertise médicale et technologies modernes pour le bien-être des patients.
         </p>
       </div>
     </div>
@@ -43,8 +43,8 @@
             />
             <!-- Validation Error -->
             <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-600 text-sm">
-              <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</p>
-              <p *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email address.</p>
+              <p *ngIf="loginForm.get('email')?.errors?.['required']">L'adresse e-mail est requise</p>
+              <p *ngIf="loginForm.get('email')?.errors?.['email']">Entrer une adresse email valide</p>
             </div>
           </div>
 
@@ -70,12 +70,12 @@
 
   <!-- Show 'minlength' error -->
   <p *ngIf="loginForm.get('password')?.hasError('minlength')">
-    Password must be at least 6 characters long.
+    Le mot de passe doit au mins contenir 6 caractères
   </p>
 </div>
 
             <div class="text-right">
-              <button class="text-gray-600 hover:text-gray-900 p-0">Forgot Password?</button>
+              <button class="text-gray-600 hover:text-gray-900 p-0">Mot de passe oubliés?</button>
             </div>
           </div>
 
@@ -86,9 +86,9 @@
 
           <!-- Register Link -->
           <p class="text-center text-sm">
-            Don't have an account?
+            Vous n'avez pas de comptes?
             <button class="text-teal-500 p-0">
-              <a routerLink="/register">Register now</a>
+              <a routerLink="/register">Creer un compte</a>
             </button>
           </p>
         </form>
