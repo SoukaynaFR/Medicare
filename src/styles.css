@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.snackbar-success {
+    background-color: #4caf50; /* Vert pour le succès */
+    color: white;
+  }
+  
+  .snackbar-error {
+    background-color: #f44336; /* Rouge pour l'échec */
+    color: white;
+  }
+  
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

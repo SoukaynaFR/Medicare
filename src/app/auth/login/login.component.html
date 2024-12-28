@@ -1,0 +1,98 @@
+<div class="container mx-auto px-4">
+  <div class="grid md:grid-cols-2 gap-8 min-h-[calc(100vh-4rem)]">
+    <!-- Left Section -->
+    <div class="flex flex-col justify-center p-4 md:p-8">
+      <div class="">
+       
+        <button class="bg-slate-500 p-3  mb-8 gap-2 hover:bg-black/90 text-white rounded   flex mt-2 ">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#fffff" width="24px" height="24px" viewBox="0 0 24 24" class="__web-inspector-hide-shortcut__">
+            <g data-name="Layer 2">
+              <g data-name="arrow-ios-back">
+                <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/>
+                <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"/>
+              </g>
+            </g>
+          </svg>
+          <a routerLink="/" class="text-white">Go back</a>
+        </button>
+      </div>
+      
+
+      <div class="bg-teal-700/90 text-white p-6 rounded-lg max-w-md">
+        <h1 class="text-2xl md:text-3xl font-bold mb-4">Building the Future...</h1>
+        <p class="text-teal-50">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Section - Login Form -->
+    <div class="flex items-center justify-center p-4 md:p-8">
+      <div class="w-full max-w-md bg-teal-200/80 p-6 md:p-8 rounded-lg">
+        <h2 class="text-xl font-bold mb-6">LOGIN</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <input
+              type="email"
+              placeholder="EMAIL"
+              class="bg-white/80 border-0 p-2 w-full rounded"
+              formControlName="email"
+            />
+            <!-- Validation Error -->
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-600 text-sm">
+              <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</p>
+              <p *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email address.</p>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="space-y-2">
+            <div class="relative">
+              <input
+                type="password"
+                placeholder="Password"
+                class="bg-white/80 border-0 pr-10 p-2 w-full rounded"
+                formControlName="password"
+              />
+            </div>
+            <!-- Validation Error -->
+            <div 
+  *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+  class="text-red-600 text-sm"
+>
+  <!-- Show 'required' error -->
+  <p *ngIf="loginForm.get('password')?.hasError('required')">
+    Password is required.
+  </p>
+
+  <!-- Show 'minlength' error -->
+  <p *ngIf="loginForm.get('password')?.hasError('minlength')">
+    Password must be at least 6 characters long.
+  </p>
+</div>
+
+            <div class="text-right">
+              <button class="text-gray-600 hover:text-gray-900 p-0">Forgot Password?</button>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button [disabled]="loginForm.invalid" class="w-full bg-black hover:bg-black/90 text-white py-2 rounded">
+            LOGIN
+          </button>
+
+          <!-- Register Link -->
+          <p class="text-center text-sm">
+            Don't have an account?
+            <button class="text-teal-500 p-0">
+              <a routerLink="/register">Register now</a>
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
