@@ -53,7 +53,7 @@
             <div class="relative">
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 class="bg-white/80 border-0 pr-10 p-2 w-full rounded"
                 formControlName="password"
               />
@@ -70,7 +70,7 @@
 
   <!-- Show 'minlength' error -->
   <p *ngIf="loginForm.get('password')?.hasError('minlength')">
-    Le mot de passe doit au mins contenir 6 caractères
+    Le mot de passe doit au moins contenir 6 caractères
   </p>
 </div>
 
